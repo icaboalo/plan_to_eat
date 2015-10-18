@@ -68,6 +68,7 @@ public class RecipeRecyclerAdapter extends RecyclerView.Adapter<RecipeRecyclerAd
             mRecipeServings = (TextView) itemView.findViewById(recipeServingsId);
             mRecipeImage = (ImageView) itemView.findViewById(recipeImageId);
             mMyViewHolderClick = clickListener;
+            itemView.setOnClickListener(this);
         }
 
         public void setRecipeName(String recipeName) {

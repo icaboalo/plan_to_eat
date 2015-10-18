@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.icaboalo.plantoeat.R;
 import com.icaboalo.plantoeat.domain.Recipes;
@@ -50,6 +51,7 @@ public class RecipeFragment extends Fragment implements RecipeRecyclerAdapter.My
     List<Recipes> createRecipe(){
         List<Recipes> recipesList = new ArrayList<>();
         recipesList.add(new Recipes("Fajitas Mongolianas", "4"));
+        recipesList.add(new Recipes("Filetes", "4"));
         return recipesList;
     }
 
@@ -62,6 +64,6 @@ public class RecipeFragment extends Fragment implements RecipeRecyclerAdapter.My
 
     @Override
     public void onMyClick(View item, int position) {
-
+        Toast.makeText(getActivity(), createRecipe().get(position).getRecipeName(), Toast.LENGTH_SHORT).show();
     }
 }
