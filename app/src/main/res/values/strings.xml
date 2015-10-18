@@ -6,4 +6,5 @@
     <string name="shopping_list">Shopping List</string>
     <string name="title_activity_recipe">RecipeActivity</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_add_recipe">AddRecipeActivity</string>
 </resources>
