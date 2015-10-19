@@ -1,10 +1,17 @@
 <resources>
     <string name="app_name">Plan To Eat</string>
     <string name="action_settings">Settings</string>
+
+    <!--buttons-->
     <string name="recipes">Recipes</string>
     <string name="planner">Planner</string>
     <string name="shopping_list">Shopping List</string>
+
+    <!--activities-->
     <string name="title_activity_recipe">RecipeActivity</string>
-    <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_add_recipe">AddRecipeActivity</string>
+
+    <!--edit text-->
+    <string name="recipe_name_input_hint">Recipe name</string>
+    <string name="servings">Servings:</string>
 </resources>
