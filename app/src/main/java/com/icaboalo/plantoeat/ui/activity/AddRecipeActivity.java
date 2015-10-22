@@ -2,6 +2,8 @@ package com.icaboalo.plantoeat.ui.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
@@ -9,9 +11,14 @@ import android.widget.NumberPicker;
 import android.widget.Toast;
 
 import com.icaboalo.plantoeat.R;
+import com.icaboalo.plantoeat.domain.Ingredients;
+import com.icaboalo.plantoeat.ui.adapter.IngredientsRecyclerAdapter;
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton;
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
 import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -27,6 +34,12 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
     @Bind(R.id.numberPicker)
     NumberPicker mNumberPicker;
 
+    @Bind(R.id.ingredients_recycler_view)
+    RecyclerView mIngredientsRecycler;
+
+    @Bind(R.id.steps_recycler_view)
+    RecyclerView mStepsRecycler;
+
     FloatingActionMenu mFloatingActionMenu;
 
     @Override
@@ -36,24 +49,14 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
         ButterKnife.bind(this);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        mNumberPicker.setMaxValue(10);
-        mNumberPicker.setMinValue(0);
-        mNumberPicker.setWrapSelectorWheel(false);
-
-        mNumberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-            @Override
-            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                int number = mNumberPicker.getValue();
-                Toast.makeText(AddRecipeActivity.this, newVal + "", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         setupFloatingActionButton();
+        setupIngredientsRecycler();
+        setupNumberPicker();
     }
 
     private void setupFloatingActionButton() {
@@ -92,11 +95,41 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
                 .build();
     }
 
+    private void setupIngredientsRecycler() {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        mIngredientsRecycler.setLayoutManager(linearLayoutManager);
+        IngredientsRecyclerAdapter mIngredientsAdapter = new IngredientsRecyclerAdapter(this, createIngredient());
+        mIngredientsRecycler.setAdapter(mIngredientsAdapter);
+    }
+
+    List<Ingredients> createIngredient() {
+        List<Ingredients> ingredientsList = new ArrayList<>();
+        ingredientsList.add(new Ingredients("Salt", "3 spns"));
+        ingredientsList.add(new Ingredients("Pepper", "2 spns"));
+        ingredientsList.add(new Ingredients("Pepper", "2 spns"));
+        ingredientsList.add(new Ingredients("Pepper", "2 spns"));
+        return ingredientsList;
+    }
+
+    private void setupNumberPicker() {
+        mNumberPicker.setMaxValue(10);
+        mNumberPicker.setMinValue(0);
+        mNumberPicker.setWrapSelectorWheel(false);
+
+        mNumberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                int number = mNumberPicker.getValue();
+                Toast.makeText(AddRecipeActivity.this, newVal + "", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     @Override
     public void onClick(View v) {
 
 //        FloatingActionMenu items
-        switch (v.getTag().toString()){
+        switch (v.getTag().toString()) {
             case TAG_ADD_INGREDIENT:
                 Toast.makeText(AddRecipeActivity.this, TAG_ADD_INGREDIENT, Toast.LENGTH_SHORT).show();
                 mFloatingActionMenu.close(true);

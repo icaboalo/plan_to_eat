@@ -5,6 +5,11 @@ package com.icaboalo.plantoeat.domain;
  */
 public class Ingredients {
 
+    public Ingredients(String ingredientName, String quantity) {
+        mIngredientName = ingredientName;
+        mQuantity = quantity;
+    }
+
     String mIngredientName;
     String mQuantity;
 
