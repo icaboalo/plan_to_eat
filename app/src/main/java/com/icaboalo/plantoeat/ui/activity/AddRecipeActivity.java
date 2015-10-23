@@ -12,7 +12,9 @@ import android.widget.Toast;
 
 import com.icaboalo.plantoeat.R;
 import com.icaboalo.plantoeat.domain.Ingredients;
+import com.icaboalo.plantoeat.domain.Steps;
 import com.icaboalo.plantoeat.ui.adapter.IngredientsRecyclerAdapter;
+import com.icaboalo.plantoeat.ui.adapter.StepsRecyclerAdapter;
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton;
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
 import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
@@ -42,6 +44,10 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
 
     FloatingActionMenu mFloatingActionMenu;
 
+    IngredientsRecyclerAdapter mIngredientsAdapter;
+
+    StepsRecyclerAdapter mStepsAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +62,7 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
         super.onResume();
         setupFloatingActionButton();
         setupIngredientsRecycler();
+        setupStepsRecycler();
         setupNumberPicker();
     }
 
@@ -95,10 +102,11 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
                 .build();
     }
 
+//    setup ingredientsRecycler
     private void setupIngredientsRecycler() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mIngredientsRecycler.setLayoutManager(linearLayoutManager);
-        IngredientsRecyclerAdapter mIngredientsAdapter = new IngredientsRecyclerAdapter(this, createIngredient());
+        mIngredientsAdapter = new IngredientsRecyclerAdapter(this, createIngredient());
         mIngredientsRecycler.setAdapter(mIngredientsAdapter);
     }
 
@@ -106,9 +114,28 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
         List<Ingredients> ingredientsList = new ArrayList<>();
         ingredientsList.add(new Ingredients("Salt", "3 spns"));
         ingredientsList.add(new Ingredients("Pepper", "2 spns"));
+        ingredientsList.add(new Ingredients("Salt", "3 spns"));
         ingredientsList.add(new Ingredients("Pepper", "2 spns"));
+        ingredientsList.add(new Ingredients("Salt", "3 spns"));
         ingredientsList.add(new Ingredients("Pepper", "2 spns"));
         return ingredientsList;
+    }
+
+//    setup stepsRecycler
+    private void setupStepsRecycler(){
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        mStepsRecycler.setLayoutManager(linearLayoutManager);
+        mStepsAdapter = new StepsRecyclerAdapter(this, createStep());
+        mStepsRecycler.setAdapter(mStepsAdapter);
+    }
+
+    List<Steps> createStep(){
+        List<Steps> stepsList = new ArrayList<>();
+        int stepNum = stepsList.size();
+        stepsList.add(new Steps("Test step", stepNum));
+        stepsList.add(new Steps("Test step", stepNum));
+        stepsList.add(new Steps("Test step", stepNum));
+        return stepsList;
     }
 
     private void setupNumberPicker() {
