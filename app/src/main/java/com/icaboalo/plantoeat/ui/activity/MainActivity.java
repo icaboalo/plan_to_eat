@@ -1,12 +1,16 @@
-package com.icaboalo.plantoeat;
+package com.icaboalo.plantoeat.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.icaboalo.plantoeat.R;
+
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,12 +22,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
         setSupportActionBar(mToolbar);
     }
 
     @OnClick(R.id.recipes)
     void onRecipesClick(){
-
+        Intent goToRecipes = new Intent(this, RecipeActivity.class);
+        startActivity(goToRecipes);
     }
 
     @OnClick(R.id.planner)
