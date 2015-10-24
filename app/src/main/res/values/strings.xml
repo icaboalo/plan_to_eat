@@ -22,4 +22,11 @@
         <item>Sopas</item>
         <item>Carnes</item>
     </string-array>
+    <string-array name="uom">
+        <item>Type</item>
+        <item>Lt.</item>
+        <item>Pz.</item>
+        <item>Kg.</item>
+        <item>g.</item>
+    </string-array>
 </resources>

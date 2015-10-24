@@ -114,12 +114,6 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
 
     List<Ingredients> createIngredient() {
         List<Ingredients> ingredientsList = new ArrayList<>();
-        ingredientsList.add(new Ingredients("Salt", "3 spns"));
-        ingredientsList.add(new Ingredients("Pepper", "2 spns"));
-        ingredientsList.add(new Ingredients("Salt", "3 spns"));
-        ingredientsList.add(new Ingredients("Pepper", "2 spns"));
-        ingredientsList.add(new Ingredients("Salt", "3 spns"));
-        ingredientsList.add(new Ingredients("Pepper", "2 spns"));
         return ingredientsList;
     }
 
@@ -133,10 +127,6 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
 
     List<Steps> createStep(){
         List<Steps> stepsList = new ArrayList<>();
-        int stepNum = stepsList.size();
-        stepsList.add(new Steps("Test step", stepNum));
-        stepsList.add(new Steps("Test step", stepNum));
-        stepsList.add(new Steps("Test step", stepNum));
         return stepsList;
     }
 
