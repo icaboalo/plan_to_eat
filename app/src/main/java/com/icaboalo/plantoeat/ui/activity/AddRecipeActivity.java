@@ -15,6 +15,7 @@ import com.icaboalo.plantoeat.domain.ModelFramentPager;
 import com.icaboalo.plantoeat.ui.adapter.IngredientsRecyclerAdapter;
 import com.icaboalo.plantoeat.ui.adapter.StepsRecyclerAdapter;
 import com.icaboalo.plantoeat.ui.adapter.ViewPagerAdapter;
+import com.icaboalo.plantoeat.ui.fragment.AddIngredientFragment;
 import com.icaboalo.plantoeat.ui.fragment.AddIngredientsDialog;
 import com.icaboalo.plantoeat.ui.fragment.AddRecipeFragment;
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton;
@@ -108,6 +109,7 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
     List<ModelFramentPager> createPager() {
         List<ModelFramentPager> pagerList = new ArrayList<>();
         pagerList.add(new ModelFramentPager(new AddRecipeFragment(), "Recipe"));
+        pagerList.add(new ModelFramentPager(new AddIngredientFragment(), "Ingredients"));
         return pagerList;
     }
 

@@ -47,6 +47,10 @@ public class IngredientsRecyclerAdapter extends RecyclerView.Adapter<Ingredients
         return mIngredientsList.size();
     }
 
+    public void setData(List<Ingredients> newList){
+        mIngredientsList = newList;
+    }
+
     public class MyIngredientsViewHolder extends RecyclerView.ViewHolder{
 
         TextView mIngredientQuantity, mIngredientName;

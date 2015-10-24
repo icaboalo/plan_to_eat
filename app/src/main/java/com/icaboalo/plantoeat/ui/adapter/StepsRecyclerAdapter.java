@@ -47,6 +47,10 @@ public class StepsRecyclerAdapter extends RecyclerView.Adapter<StepsRecyclerAdap
         return mStepsList.size();
     }
 
+    public void setData(List<Steps> newList){
+        mStepsList = newList;
+    }
+
     public class MyStepsViewHolder extends RecyclerView.ViewHolder{
 
         TextView mStepDescription, mStepNumber;
