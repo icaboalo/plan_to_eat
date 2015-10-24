@@ -1,22 +1,22 @@
 package com.icaboalo.plantoeat.ui.activity;
 
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.NumberPicker;
 import android.widget.Toast;
 
 import com.icaboalo.plantoeat.R;
-import com.icaboalo.plantoeat.domain.Ingredients;
-import com.icaboalo.plantoeat.domain.Steps;
+import com.icaboalo.plantoeat.domain.ModelFramentPager;
 import com.icaboalo.plantoeat.ui.adapter.IngredientsRecyclerAdapter;
 import com.icaboalo.plantoeat.ui.adapter.StepsRecyclerAdapter;
+import com.icaboalo.plantoeat.ui.adapter.ViewPagerAdapter;
 import com.icaboalo.plantoeat.ui.fragment.AddIngredientsDialog;
+import com.icaboalo.plantoeat.ui.fragment.AddRecipeFragment;
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton;
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
 import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
@@ -35,14 +35,11 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
     @Bind(R.id.app_bar)
     Toolbar mToolbar;
 
-    @Bind(R.id.numberPicker)
-    NumberPicker mNumberPicker;
+    @Bind(R.id.tab_layout)
+    TabLayout mTabLayout;
 
-    @Bind(R.id.ingredients_recycler_view)
-    RecyclerView mIngredientsRecycler;
-
-    @Bind(R.id.steps_recycler_view)
-    RecyclerView mStepsRecycler;
+    @Bind(R.id.view_pager)
+    ViewPager mViewPager;
 
     FloatingActionMenu mFloatingActionMenu;
 
@@ -63,9 +60,7 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
     protected void onResume() {
         super.onResume();
         setupFloatingActionButton();
-        setupIngredientsRecycler();
-        setupStepsRecycler();
-        setupNumberPicker();
+        setupViewPager();
     }
 
     private void setupFloatingActionButton() {
@@ -104,44 +99,16 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
                 .build();
     }
 
-//    setup ingredientsRecycler
-    private void setupIngredientsRecycler() {
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        mIngredientsRecycler.setLayoutManager(linearLayoutManager);
-        mIngredientsAdapter = new IngredientsRecyclerAdapter(this, createIngredient());
-        mIngredientsRecycler.setAdapter(mIngredientsAdapter);
+    public void setupViewPager(){
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), createPager());
+        mViewPager.setAdapter(viewPagerAdapter);
+        mTabLayout.setupWithViewPager(mViewPager);
     }
 
-    List<Ingredients> createIngredient() {
-        List<Ingredients> ingredientsList = new ArrayList<>();
-        return ingredientsList;
-    }
-
-//    setup stepsRecycler
-    private void setupStepsRecycler(){
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        mStepsRecycler.setLayoutManager(linearLayoutManager);
-        mStepsAdapter = new StepsRecyclerAdapter(this, createStep());
-        mStepsRecycler.setAdapter(mStepsAdapter);
-    }
-
-    List<Steps> createStep(){
-        List<Steps> stepsList = new ArrayList<>();
-        return stepsList;
-    }
-
-    private void setupNumberPicker() {
-        mNumberPicker.setMaxValue(10);
-        mNumberPicker.setMinValue(0);
-        mNumberPicker.setWrapSelectorWheel(false);
-
-        mNumberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-            @Override
-            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                int number = mNumberPicker.getValue();
-                Toast.makeText(AddRecipeActivity.this, newVal + "", Toast.LENGTH_SHORT).show();
-            }
-        });
+    List<ModelFramentPager> createPager() {
+        List<ModelFramentPager> pagerList = new ArrayList<>();
+        pagerList.add(new ModelFramentPager(new AddRecipeFragment(), "Recipe"));
+        return pagerList;
     }
 
     @Override
