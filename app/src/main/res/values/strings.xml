@@ -14,11 +14,19 @@
     <!--edit text-->
     <string name="recipe_name_input_hint">Recipe name</string>
     <string name="servings">Servings:</string>
+    <string name="ingredient_input_hint">Ingredient Name</string>
 
     <!--spinners-->
     <string-array name="categories_array">
         <item>Categories</item>
         <item>Sopas</item>
         <item>Carnes</item>
+    </string-array>
+    <string-array name="uom">
+        <item>Type</item>
+        <item>Lt.</item>
+        <item>Pz.</item>
+        <item>Kg.</item>
+        <item>g.</item>
     </string-array>
 </resources>

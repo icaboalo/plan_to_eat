@@ -62,7 +62,7 @@ public class StepsRecyclerAdapter extends RecyclerView.Adapter<StepsRecyclerAdap
         }
 
         public void setStepNumber(int stepNumber) {
-            mStepNumber.setText(stepNumber);
+            mStepNumber.setText(stepNumber + "");
         }
     }
 }

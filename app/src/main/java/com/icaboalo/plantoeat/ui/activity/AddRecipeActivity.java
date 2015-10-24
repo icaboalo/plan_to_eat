@@ -1,6 +1,7 @@
 package com.icaboalo.plantoeat.ui.activity;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +16,7 @@ import com.icaboalo.plantoeat.domain.Ingredients;
 import com.icaboalo.plantoeat.domain.Steps;
 import com.icaboalo.plantoeat.ui.adapter.IngredientsRecyclerAdapter;
 import com.icaboalo.plantoeat.ui.adapter.StepsRecyclerAdapter;
+import com.icaboalo.plantoeat.ui.fragment.AddIngredientsDialog;
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton;
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
 import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
@@ -112,12 +114,6 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
 
     List<Ingredients> createIngredient() {
         List<Ingredients> ingredientsList = new ArrayList<>();
-        ingredientsList.add(new Ingredients("Salt", "3 spns"));
-        ingredientsList.add(new Ingredients("Pepper", "2 spns"));
-        ingredientsList.add(new Ingredients("Salt", "3 spns"));
-        ingredientsList.add(new Ingredients("Pepper", "2 spns"));
-        ingredientsList.add(new Ingredients("Salt", "3 spns"));
-        ingredientsList.add(new Ingredients("Pepper", "2 spns"));
         return ingredientsList;
     }
 
@@ -131,10 +127,6 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
 
     List<Steps> createStep(){
         List<Steps> stepsList = new ArrayList<>();
-        int stepNum = stepsList.size();
-        stepsList.add(new Steps("Test step", stepNum));
-        stepsList.add(new Steps("Test step", stepNum));
-        stepsList.add(new Steps("Test step", stepNum));
         return stepsList;
     }
 
@@ -159,6 +151,7 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
         switch (v.getTag().toString()) {
             case TAG_ADD_INGREDIENT:
                 Toast.makeText(AddRecipeActivity.this, TAG_ADD_INGREDIENT, Toast.LENGTH_SHORT).show();
+                showDialog();
                 mFloatingActionMenu.close(true);
                 break;
             case TAG_ADD_STEP:
@@ -166,5 +159,11 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
                 mFloatingActionMenu.close(true);
                 break;
         }
+    }
+
+    private void showDialog() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        AddIngredientsDialog placeDialogFragment = new AddIngredientsDialog().newInstance("Add Place");
+        placeDialogFragment.show(fragmentManager, "add_ingredient");
     }
 }
