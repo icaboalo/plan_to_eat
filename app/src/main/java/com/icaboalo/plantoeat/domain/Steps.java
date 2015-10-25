@@ -5,9 +5,8 @@ package com.icaboalo.plantoeat.domain;
  */
 public class Steps {
 
-    public Steps(String stepDescription, int stepNumber) {
+    public Steps(String stepDescription) {
         mStepDescription = stepDescription;
-        mStepNumber = stepNumber;
     }
 
     String mStepDescription;
