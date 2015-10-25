@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.NumberPicker;
-import android.widget.Toast;
 
 import com.icaboalo.plantoeat.R;
 
@@ -49,7 +48,6 @@ public class AddRecipeFragment extends Fragment {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 int number = mNumberPicker.getValue();
-                Toast.makeText(getActivity(), newVal + "", Toast.LENGTH_SHORT).show();
             }
         });
     }
