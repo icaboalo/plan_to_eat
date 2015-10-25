@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.icaboalo.plantoeat.ui.activity.AddRecipeActivity"
-    tools:showIn="@layout/activity_add_recipe">
+    tools:context="com.icaboalo.plantoeat.ui.activity.AddRecipeActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -58,53 +57,5 @@
             android:layout_toRightOf="@+id/numberPicker"
             android:entries="@array/categories_array"/>
 
-        <View
-            android:id="@+id/number_picker_divider"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@id/numberPicker"
-            android:layout_marginTop="16dp"
-            android:background="@color/divider"/>
-
-        <TextView
-            android:id="@+id/ingredients"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/number_picker_divider"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="16dp"
-            android:text="Ingredients"
-            android:textSize="24sp"/>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/ingredients_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_below="@+id/ingredients"/>
-
-        <View
-            android:id="@+id/ingredients_recycler_view_divider"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@id/ingredients_recycler_view"
-            android:layout_marginTop="16dp"
-            android:background="@color/divider"/>
-
-        <TextView
-            android:id="@+id/steps"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/ingredients_recycler_view_divider"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="16dp"
-            android:text="Steps"
-            android:textSize="24sp"/>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/steps_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_below="@+id/steps"/>
-
     </RelativeLayout>
-</ScrollView>
+</LinearLayout>
