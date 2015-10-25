@@ -22,7 +22,7 @@ import butterknife.ButterKnife;
 /**
  * Created by icaboalo on 10/24/2015.
  */
-public class AddStepsFragment extends Fragment {
+public class StepsFragment extends Fragment {
 
     @Bind(R.id.step_recycler_view)
     RecyclerView mStepsRecycler;

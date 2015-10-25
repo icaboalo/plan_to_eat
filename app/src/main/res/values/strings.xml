@@ -15,6 +15,7 @@
     <string name="recipe_name_input_hint">Recipe name</string>
     <string name="servings">Servings:</string>
     <string name="ingredient_input_hint">Ingredient Name</string>
+    <string name="step_input_hint">Step Description</string>
 
     <!--spinners-->
     <string-array name="categories_array">
