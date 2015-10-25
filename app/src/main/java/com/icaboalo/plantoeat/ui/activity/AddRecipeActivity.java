@@ -8,17 +8,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.icaboalo.plantoeat.R;
 import com.icaboalo.plantoeat.domain.ModelFramentPager;
 import com.icaboalo.plantoeat.ui.adapter.IngredientsRecyclerAdapter;
 import com.icaboalo.plantoeat.ui.adapter.StepsRecyclerAdapter;
 import com.icaboalo.plantoeat.ui.adapter.ViewPagerAdapter;
-import com.icaboalo.plantoeat.ui.fragment.AddIngredientFragment;
-import com.icaboalo.plantoeat.ui.fragment.AddIngredientsDialog;
+import com.icaboalo.plantoeat.ui.fragment.AddIngredientDialog;
 import com.icaboalo.plantoeat.ui.fragment.AddRecipeFragment;
-import com.icaboalo.plantoeat.ui.fragment.AddStepsFragment;
+import com.icaboalo.plantoeat.ui.fragment.AddStepDialog;
+import com.icaboalo.plantoeat.ui.fragment.IngredientsFragment;
+import com.icaboalo.plantoeat.ui.fragment.StepsFragment;
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton;
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
 import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
@@ -110,8 +110,8 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
     List<ModelFramentPager> createPager() {
         List<ModelFramentPager> pagerList = new ArrayList<>();
         pagerList.add(new ModelFramentPager(new AddRecipeFragment(), "Recipe"));
-        pagerList.add(new ModelFramentPager(new AddIngredientFragment(), "Ingredients"));
-        pagerList.add(new ModelFramentPager(new AddStepsFragment(), "Steps"));
+        pagerList.add(new ModelFramentPager(new IngredientsFragment(), "Ingredients"));
+        pagerList.add(new ModelFramentPager(new StepsFragment(), "Steps"));
         return pagerList;
     }
 
@@ -121,20 +121,25 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
 //        FloatingActionMenu items
         switch (v.getTag().toString()) {
             case TAG_ADD_INGREDIENT:
-                Toast.makeText(AddRecipeActivity.this, TAG_ADD_INGREDIENT, Toast.LENGTH_SHORT).show();
-                showDialog();
+                showIngredientDialog();
                 mFloatingActionMenu.close(true);
                 break;
             case TAG_ADD_STEP:
-                Toast.makeText(AddRecipeActivity.this, TAG_ADD_STEP, Toast.LENGTH_SHORT).show();
+                showStepDialog();
                 mFloatingActionMenu.close(true);
                 break;
         }
     }
 
-    private void showDialog() {
+    private void showIngredientDialog() {
         FragmentManager fragmentManager = getSupportFragmentManager();
-        AddIngredientsDialog placeDialogFragment = new AddIngredientsDialog().newInstance("Add Place");
+        AddIngredientDialog placeDialogFragment = new AddIngredientDialog().newInstance("Add Place");
         placeDialogFragment.show(fragmentManager, "add_ingredient");
+    }
+
+    private void showStepDialog(){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        AddStepDialog stepDialogFragment = new AddStepDialog().newInstance("Add Step");
+        stepDialogFragment.show(fragmentManager, "add_step");
     }
 }

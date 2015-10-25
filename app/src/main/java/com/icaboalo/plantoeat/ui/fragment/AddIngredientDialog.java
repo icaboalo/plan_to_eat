@@ -14,10 +14,10 @@ import com.icaboalo.plantoeat.R;
 /**
  * Created by icaboalo on 10/23/2015.
  */
-public class AddIngredientsDialog extends DialogFragment {
+public class AddIngredientDialog extends DialogFragment {
 
-    public static AddIngredientsDialog newInstance(String title) {
-        AddIngredientsDialog fragment = new AddIngredientsDialog();
+    public static AddIngredientDialog newInstance(String title) {
+        AddIngredientDialog fragment = new AddIngredientDialog();
         Bundle args = new Bundle();
         args.putString("Add Place", title);
         fragment.setArguments(args);

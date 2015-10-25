@@ -22,7 +22,7 @@ import butterknife.ButterKnife;
 /**
  * Created by icaboalo on 10/24/2015.
  */
-public class AddIngredientFragment extends Fragment {
+public class IngredientsFragment extends Fragment {
 
     @Bind(R.id.ingredient_recycler_view)
     RecyclerView mIngredientRecycler;
