@@ -17,7 +17,7 @@ public class RecipeDataBaseConstants {
     public static final String COLUMN_INGREDIENTS = "ingredients";
     public static final String COLUMN_STEPS = "steps";
 
-    public static final String CREATE_TABLE_FRIENDS =
+    public static final String CREATE_TABLE_RECIPES =
             "CREATE TABLE " + TABLE_RECIPES + " (" +
                     COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COLUMN_RECIPE_NAME + " TEXT, " +
