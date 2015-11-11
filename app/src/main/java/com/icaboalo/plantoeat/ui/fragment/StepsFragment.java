@@ -27,6 +27,8 @@ public class StepsFragment extends Fragment {
     @Bind(R.id.step_recycler_view)
     RecyclerView mStepsRecycler;
 
+    StepsRecyclerAdapter mStepsAdapter;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -48,15 +50,16 @@ public class StepsFragment extends Fragment {
     private void setupStepsRecycler() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         mStepsRecycler.setLayoutManager(linearLayoutManager);
-        StepsRecyclerAdapter stepsAdapter = new StepsRecyclerAdapter(getActivity(), createStep());
-        mStepsRecycler.setAdapter(stepsAdapter);
+        mStepsAdapter = new StepsRecyclerAdapter(getActivity(), createStep());
+        mStepsRecycler.setAdapter(mStepsAdapter);
     }
 
     List<Steps> createStep(){
         List<Steps> stepsList = new ArrayList<>();
-        stepsList.add(new Steps("Test Description"));
-        stepsList.add(new Steps("Test Description 2"));
-        stepsList.add(new Steps("Test Description 3"));
         return stepsList;
+    }
+
+    public void changeListData(String stepDescription){
+        mStepsAdapter.addData(stepDescription);
     }
 }

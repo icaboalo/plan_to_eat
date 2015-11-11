@@ -8,15 +8,23 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 
 import com.icaboalo.plantoeat.R;
+import com.icaboalo.plantoeat.util.VUtil;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
  * Created by icaboalo on 10/24/2015.
  */
 public class AddStepDialog extends DialogFragment{
+
+    @Bind(R.id.step_description_input)
+    EditText mStepDescriptionInput;
+
+    Communicator mCommunicator;
 
     public static AddStepDialog newInstance(String title) {
         AddStepDialog fragment = new AddStepDialog();
@@ -38,6 +46,7 @@ public class AddStepDialog extends DialogFragment{
         alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                mCommunicator.respondStep(VUtil.extractText(mStepDescriptionInput));
                 dialog.dismiss();
             }
         });
@@ -48,5 +57,9 @@ public class AddStepDialog extends DialogFragment{
             }
         });
         return alertDialog.create();
+    }
+
+    public void setCommunicator(Communicator communicator) {
+        mCommunicator = communicator;
     }
 }

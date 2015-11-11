@@ -11,12 +11,11 @@ import android.widget.ImageView;
 
 import com.icaboalo.plantoeat.R;
 import com.icaboalo.plantoeat.domain.ModelFramentPager;
-import com.icaboalo.plantoeat.ui.adapter.IngredientsRecyclerAdapter;
-import com.icaboalo.plantoeat.ui.adapter.StepsRecyclerAdapter;
 import com.icaboalo.plantoeat.ui.adapter.ViewPagerAdapter;
 import com.icaboalo.plantoeat.ui.fragment.AddIngredientDialog;
 import com.icaboalo.plantoeat.ui.fragment.AddRecipeFragment;
 import com.icaboalo.plantoeat.ui.fragment.AddStepDialog;
+import com.icaboalo.plantoeat.ui.fragment.Communicator;
 import com.icaboalo.plantoeat.ui.fragment.IngredientsFragment;
 import com.icaboalo.plantoeat.ui.fragment.StepsFragment;
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton;
@@ -29,7 +28,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class AddRecipeActivity extends AppCompatActivity implements View.OnClickListener {
+public class AddRecipeActivity extends AppCompatActivity implements View.OnClickListener, Communicator {
 
     public static final String TAG_ADD_INGREDIENT = "addIngredient";
     public static final String TAG_ADD_STEP = "addStep";
@@ -45,9 +44,9 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
 
     FloatingActionMenu mFloatingActionMenu;
 
-    IngredientsRecyclerAdapter mIngredientsAdapter;
-
-    StepsRecyclerAdapter mStepsAdapter;
+    AddRecipeFragment mAddRecipeFragment = new AddRecipeFragment();
+    IngredientsFragment mIngredientsFragment = new IngredientsFragment();
+    StepsFragment mStepsFragment = new StepsFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,9 +108,9 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
 
     List<ModelFramentPager> createPager() {
         List<ModelFramentPager> pagerList = new ArrayList<>();
-        pagerList.add(new ModelFramentPager(new AddRecipeFragment(), "Recipe"));
-        pagerList.add(new ModelFramentPager(new IngredientsFragment(), "Ingredients"));
-        pagerList.add(new ModelFramentPager(new StepsFragment(), "Steps"));
+        pagerList.add(new ModelFramentPager(mAddRecipeFragment, "Recipe"));
+        pagerList.add(new ModelFramentPager(mIngredientsFragment, "Ingredients"));
+        pagerList.add(new ModelFramentPager(mStepsFragment, "Steps"));
         return pagerList;
     }
 
@@ -135,11 +134,23 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
         FragmentManager fragmentManager = getSupportFragmentManager();
         AddIngredientDialog placeDialogFragment = new AddIngredientDialog().newInstance("Add Place");
         placeDialogFragment.show(fragmentManager, "add_ingredient");
+        placeDialogFragment.setCommunicator(this);
     }
 
     private void showStepDialog(){
         FragmentManager fragmentManager = getSupportFragmentManager();
         AddStepDialog stepDialogFragment = new AddStepDialog().newInstance("Add Step");
         stepDialogFragment.show(fragmentManager, "add_step");
+        stepDialogFragment.setCommunicator(this);
+    }
+
+    @Override
+    public void respondStep(String description) {
+        mStepsFragment.changeListData(description);
+    }
+
+    @Override
+    public void respondIngredient(String ingredientName, String ingredientQuantity) {
+        mIngredientsFragment.changeListData(ingredientName, ingredientQuantity);
     }
 }
