@@ -22,15 +22,17 @@ import butterknife.ButterKnife;
 /**
  * Created by icaboalo on 10/24/2015.
  */
-public class IngredientsFragment extends Fragment {
+public class IngredientsFragment extends Fragment{
 
     @Bind(R.id.ingredient_recycler_view)
     RecyclerView mIngredientRecycler;
 
+    IngredientsRecyclerAdapter mIngredientsAdapter;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_add_ingredient_list, container, false);
+        return inflater.inflate(R.layout.fragment_ingredient_list, container, false);
     }
 
     @Override
@@ -48,14 +50,16 @@ public class IngredientsFragment extends Fragment {
     private void setupIngredientRecycler() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         mIngredientRecycler.setLayoutManager(linearLayoutManager);
-        IngredientsRecyclerAdapter ingredientsAdapter = new IngredientsRecyclerAdapter(getContext(), createIngredient());
-        mIngredientRecycler.setAdapter(ingredientsAdapter);
+        mIngredientsAdapter = new IngredientsRecyclerAdapter(getActivity(), createIngredient());
+        mIngredientRecycler.setAdapter(mIngredientsAdapter);
     }
 
     List<Ingredients> createIngredient() {
         List<Ingredients> ingredientsList = new ArrayList<>();
-        ingredientsList.add(new Ingredients("Salt", "2 sps"));
-        ingredientsList.add(new Ingredients("Salt", "2 sps"));
         return ingredientsList;
+    }
+
+    public void changeListData(String ingredientName, String ingredientQuantity){
+        mIngredientsAdapter.addData(ingredientName, ingredientQuantity);
     }
 }

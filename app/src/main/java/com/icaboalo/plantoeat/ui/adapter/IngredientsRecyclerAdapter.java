@@ -49,6 +49,12 @@ public class IngredientsRecyclerAdapter extends RecyclerView.Adapter<Ingredients
 
     public void setData(List<Ingredients> newList){
         mIngredientsList = newList;
+        notifyDataSetChanged();
+    }
+
+    public void addData(String ingredientName, String ingredientQuantity){
+        mIngredientsList.add(new Ingredients(ingredientName, ingredientQuantity));
+        notifyDataSetChanged();
     }
 
     public class MyIngredientsViewHolder extends RecyclerView.ViewHolder{

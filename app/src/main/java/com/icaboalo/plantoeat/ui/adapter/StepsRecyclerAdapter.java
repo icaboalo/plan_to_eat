@@ -51,6 +51,11 @@ public class StepsRecyclerAdapter extends RecyclerView.Adapter<StepsRecyclerAdap
         mStepsList = newList;
     }
 
+    public void addData(String stepDescription){
+        mStepsList.add(new Steps(stepDescription));
+        notifyDataSetChanged();
+    }
+
     public class MyStepsViewHolder extends RecyclerView.ViewHolder{
 
         TextView mStepDescription, mStepNumber;
