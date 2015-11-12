@@ -54,7 +54,7 @@ public class StepsFragment extends Fragment {
         mStepsRecycler.setAdapter(mStepsAdapter);
     }
 
-    List<Steps> createStep(){
+    public static List<Steps> createStep(){
         List<Steps> stepsList = new ArrayList<>();
         return stepsList;
     }
@@ -62,4 +62,6 @@ public class StepsFragment extends Fragment {
     public void changeListData(String stepDescription){
         mStepsAdapter.addData(stepDescription);
     }
+
+
 }

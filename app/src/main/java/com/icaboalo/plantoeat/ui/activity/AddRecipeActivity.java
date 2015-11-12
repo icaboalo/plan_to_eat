@@ -32,6 +32,7 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
 
     public static final String TAG_ADD_INGREDIENT = "addIngredient";
     public static final String TAG_ADD_STEP = "addStep";
+    public static final String TAG_SAVE = "save";
 
     @Bind(R.id.app_bar)
     Toolbar mToolbar;
@@ -75,6 +76,7 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
 
 //        sub actions
         SubActionButton.Builder subActionBuilder = new SubActionButton.Builder(this);
+
         ImageView addIngredientIcon = new ImageView(this);
         SubActionButton addIngredientButton = subActionBuilder
                 .setContentView(addIngredientIcon)
@@ -85,17 +87,25 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
                 .setContentView(addStepIcon)
                 .build();
 
+        ImageView saveIcon = new ImageView(this);
+        SubActionButton saveButton = subActionBuilder
+                .setContentView(saveIcon)
+                .build();
+
 //        tags to determine onClick
         addIngredientButton.setTag(TAG_ADD_INGREDIENT);
         addStepButton.setTag(TAG_ADD_STEP);
+        saveButton.setTag(TAG_SAVE);
 
         addIngredientButton.setOnClickListener(this);
         addStepButton.setOnClickListener(this);
+        saveButton.setOnClickListener(this);
 
 //        floating menu
         mFloatingActionMenu = new FloatingActionMenu.Builder(this)
-                .addSubActionView(addIngredientButton)
+                .addSubActionView(saveButton)
                 .addSubActionView(addStepButton)
+                .addSubActionView(addIngredientButton)
                 .attachTo(mFloatingActionButton)
                 .build();
     }
@@ -125,6 +135,9 @@ public class AddRecipeActivity extends AppCompatActivity implements View.OnClick
                 break;
             case TAG_ADD_STEP:
                 showStepDialog();
+                mFloatingActionMenu.close(true);
+                break;
+            case TAG_SAVE:
                 mFloatingActionMenu.close(true);
                 break;
         }
